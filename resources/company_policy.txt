@@ -1,0 +1,21 @@
+# Company Policy - Remote Work
+
+Effective Date: January 1, 2024
+
+Our company embraces a flexible remote work model to promote a healthy work-life balance while ensuring operational excellence.
+
+## 1. Remote Work Eligibility
+- All full-time and part-time employees are eligible for remote work, provided their roles can be performed effectively outside the office.
+- New hires may be required to work on-site during their initial onboarding period (typically 30 days).
+
+## 2. Equipment and Setup
+- The company will provide essential equipment, including laptops, monitors, and peripherals.
+- Employees are responsible for ensuring a stable and secure high-speed internet connection.
+
+## 3. Communication and Collaboration
+- Use Slack for daily messaging and Zoom for video conferencing.
+- Core working hours are from 10:00 AM to 3:00 PM EST for synchronous collaboration.
+
+## 4. Security
+- Use the company-provided VPN for accessing all internal systems.
+- Ensure your physical workspace is private and secure.

@@ -1,0 +1,9 @@
+mcp
+fastmcp
+langchain
+langgraph
+langchain-mcp-adapters
+langchain-aws
+boto3
+chainlit
+python-dotenv
