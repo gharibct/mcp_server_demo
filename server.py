@@ -17,6 +17,7 @@ def query_inventory(product_name: str) -> str:
     :return: A string containing product details or a 'not found' message.
     """
     try:
+        print(f"Received inventory query for product: {product_name}")
         return query_product(product_name)
     except Exception as e:
         return f"Error querying inventory: {str(e)}"
