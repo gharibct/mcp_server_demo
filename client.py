@@ -14,16 +14,24 @@ from mcp.client.stdio import stdio_client, StdioServerParameters
 # Load environment variables (AWS credentials)
 load_dotenv()
 
-# MCP server connection config
-MCP_CONNECTION = StdioConnection(
+# MCP server connections
+INVENTORY_CONNECTION = StdioConnection(
     transport="stdio",
     command="python",
     args=["server.py"],
 )
 
+FILES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "files")
+FILESYSTEM_CONNECTION = StdioConnection(
+    transport="stdio",
+    command="npx",
+    args=["-y", "@modelcontextprotocol/server-filesystem", FILES_DIR],
+)
+
 SYSTEM_PROMPT = (
-    "You are a helpful inventory assistant. "
+    "You are a helpful assistant with access to inventory data and a file system. "
     "When asked about products (price, stock, etc.), ALWAYS use the query_inventory tool to look up the information. "
+    "When asked about files or documents, use the filesystem tools (read_file, list_directory, etc.). "
     "Do not ask for clarification on product names — just search with what the user provides.\n\n"
 )
 
@@ -57,13 +65,15 @@ async def run_query(query: str):
     resources_context = await load_resources_context()
     system = SYSTEM_PROMPT + "Here are the company resources you have access to:\n\n" + resources_context
 
-    mcp_tools = await load_mcp_tools(session=None, connection=MCP_CONNECTION)
-    agent = create_agent(get_llm(), tools=mcp_tools, system_prompt=system)
+    inventory_tools = await load_mcp_tools(session=None, connection=INVENTORY_CONNECTION, server_name="inventory")
+    filesystem_tools = await load_mcp_tools(session=None, connection=FILESYSTEM_CONNECTION, server_name="filesystem")
+    all_tools = inventory_tools + filesystem_tools
+    agent = create_agent(get_llm(), tools=all_tools, system_prompt=system)
     response = await agent.ainvoke({"messages": [("user", query)]})
     return response["messages"][-1].content
 
 
 if __name__ == "__main__":
-    query = "What is the price and stock of the laptop? Also check the company policy on equipment."
+    query = "What is the price of the laptop? Also list the files in the files directory and read the sales report."
     response = asyncio.run(run_query(query))
     print(f"Response:\n{response}")
