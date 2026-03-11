@@ -1,0 +1,11 @@
+Q1 2024 Sales Report
+
+Product Performance Summary:
+- Laptops: 120 units sold, Revenue: $144,000
+- Monitors: 85 units sold, Revenue: $25,500
+- Keyboards: 200 units sold, Revenue: $15,000
+- Mice: 310 units sold, Revenue: $7,750
+- Desk Lamps: 95 units sold, Revenue: $4,275
+
+Total Revenue: $196,525
+Top Performer: Laptops (73% of revenue)
